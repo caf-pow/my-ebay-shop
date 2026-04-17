@@ -1,8 +1,11 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/my-ebay-shop/',
+  // どんなリポジトリ名でも動くように、相対パス（./）を徹底します
+  base: './', 
+  build: {
+    outDir: 'dist',
+  }
 })
