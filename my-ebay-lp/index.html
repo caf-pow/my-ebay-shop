@@ -4,26 +4,143 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>あかりshop ☆ | 日本の宝物を世界へ</title>
-    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(15deg); }
+        }
+        @keyframes pulse-btn {
+            0%, 100% { box-shadow: 0 6px 24px rgba(255,153,0,0.5); }
+            50% { box-shadow: 0 10px 36px rgba(255,153,0,0.8); }
+        }
+        .ebay-btn {
+            background: linear-gradient(135deg, #FF9900, #FF6600);
+            animation: pulse-btn 2s ease-in-out infinite;
+            transition: transform 0.15s;
+        }
+        .ebay-btn:hover { transform: scale(1.06) translateY(-2px); }
+        .card { background: white; border-radius: 24px; box-shadow: 0 4px 24px rgba(255,153,0,0.12); transition: all 0.2s; border: 2px solid #FFE0B2; }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(255,153,0,0.25); }
+    </style>
 </head>
-<body>
-    <nav class="nav">
-        <div class="logo">あかりshop ☆</div>
-        <a href="https://www.ebay.com" class="nav-ebay-btn">🛒 eBayで買う</a>
-    </nav>
+<body class="bg-[#fffaf5]">
+    <div id="root"></div>
 
-    <section class="hero">
-        <div class="hero-content">
-            <span class="badge">日本直送ショップ</span>
-            <h1>日本から、あなたのもとへ。<br><span>厳選した宝物</span>をお届けします</h1>
-            <p>レトロゲーム・限定フィギュア・和菓子まで、丁寧梱包・追跡付きで世界中にお届けします。</p>
-            <a href="https://www.ebay.com" class="main-btn">⭐ eBayストアを見る</a>
-        </div>
-        <div class="hero-image">
-            <img src="images/hero-bg.png" alt="Main Visual">
-        </div>
-    </section>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
 
-    <script src="script.js"></script>
+        const StarIcon = ({ size = 16, color = "#FF9900" }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill={color} style={{display: 'inline-block'}}>
+                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+            </svg>
+        );
+
+        const FloatingStar = ({ style }) => (
+            <div style={{ position: "absolute", animation: "float 3s ease-in-out infinite", ...style }}>
+                <StarIcon size={20} color="rgba(255,153,0,0.5)" />
+            </div>
+        );
+
+        const products = [
+            { emoji: "🕹️", name: "レトロゲームソフト", desc: "スーパーファミコン・ゲームボーイなど、状態良好な希少タイトルを厳選！", price: "$24.99〜", tag: "レトロ" },
+            { emoji: "🎎", name: "限定フィギュア", desc: "日本国内限定・コミケ限定など、海外では手に入らないレアアイテム多数！", price: "$39.99〜", tag: "限定品" },
+            { emoji: "🍬", name: "日本のお菓子セット", desc: "ポッキー・抹茶キットカット・おしるこなど、本場の味をお届けします！", price: "$12.99〜", tag: "人気No.1" }
+        ];
+
+        function App() {
+            const [scrolled, setScrolled] = useState(false);
+            useEffect(() => {
+                const onScroll = () => setScrolled(window.scrollY > 30);
+                window.addEventListener("scroll", onScroll);
+                return () => window.removeEventListener("scroll", onScroll);
+            }, []);
+
+            return (
+                <div className="text-[#333] overflow-x-hidden" style={{fontFamily: "'Segoe UI', sans-serif"}}>
+                    {/* NAV */}
+                    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 px-8 py-4 flex justify-between items-center ${scrolled ? "bg-[#fffaf5]/95 backdrop-blur-md border-b-2 border-[#FFE0B2]" : "bg-transparent"}`}>
+                        <div className="flex items-center gap-2">
+                            <StarIcon size={22} color="#FF9900" />
+                            <span className="font-extrabold text-lg text-[#FF6600]">あかりshop ☆</span>
+                        </div>
+                        <a href="https://www.ebay.com" target="_blank" className="bg-[#FF9900] text-white rounded-full px-6 py-2 font-bold text-sm flex items-center gap-2">
+                            🛒 eBayで買う
+                        </a>
+                    </nav>
+
+                    {/* HERO */}
+                    <section className="relative min-h-[600px] flex items-center pt-20 bg-gradient-to-br from-[#FFF3E0] via-[#fffaf5] to-[#E3F2FD]">
+                        <div className="absolute inset-0 pointer-events-none">
+                            <FloatingStar style={{ top: "15%", left: "5%" }} />
+                            <FloatingStar style={{ top: "75%", left: "10%" }} />
+                            <FloatingStar style={{ top: "35%", left: "45%" }} />
+                        </div>
+
+                        <div className="relative z-10 w-full max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center">
+                            <div className="md:w-1/2 space-y-6">
+                                <div className="inline-flex items-center gap-2 bg-[#FFF3E0] border-2 border-[#FFB74D] rounded-full px-4 py-1">
+                                    <StarIcon size={14} />
+                                    <span className="text-xs font-bold text-[#E65100]">日本直送ショップ</span>
+                                    <StarIcon size={14} />
+                                </div>
+                                <h1 className="text-4xl md:text-5xl font-black text-[#BF360C] leading-tight">
+                                    日本から、あなたへ。<br />
+                                    <span className="text-[#FF6600]">厳選した宝物</span>をお届け
+                                </h1>
+                                <p className="text-gray-600 max-w-md">レトロゲーム・限定品・和菓子。日本各地のレアアイテムを丁寧に梱包して世界中へ発送します。⭐️</p>
+                                <a href="https://www.ebay.com" target="_blank" className="ebay-btn inline-flex items-center gap-2 text-white rounded-full px-10 py-4 font-black text-lg">
+                                    ⭐ eBayストアを見る
+                                </a>
+                            </div>
+
+                            <div className="md:w-1/2 mt-12 md:mt-0 relative">
+                                {/* ここにあなたの画像を配置します。ファイル名を合わせてください */}
+                                <img src="images/hero.png" className="w-full h-auto rounded-3xl" alt="あかりshopメインビジュアル" 
+                                     onError={(e) => e.target.style.display='none'} />
+                                {/* 画像がない時のための代わりの図形（星の渦） */}
+                                <div className="w-full h-[400px] bg-[#FFE082]/30 rounded-full blur-3xl absolute -z-10 top-0"></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* PRODUCTS */}
+                    <section className="py-20 px-8 max-w-6xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl font-black text-[#BF360C]">人気商品ピックアップ ⭐</h2>
+                        </div>
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {products.map(p => (
+                                <div key={p.name} className="card p-8 bg-white">
+                                    <div className="text-5xl mb-4">{p.emoji}</div>
+                                    <h3 className="text-xl font-bold text-[#BF360C] mb-2">{p.name}</h3>
+                                    <p className="text-sm text-gray-500 mb-6">{p.desc}</p>
+                                    <div className="flex justify-between items-center">
+                                        <span className="text-xl font-black text-[#FF6600]">{p.price}</span>
+                                        <button className="bg-[#FF9900] text-white px-4 py-2 rounded-full font-bold text-xs">詳しく見る</button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* FOOTER */}
+                    <footer className="bg-[#1a1a2e] text-gray-400 py-12 px-8 text-center">
+                        <div className="flex justify-center items-center gap-2 mb-4">
+                            <StarIcon size={20} />
+                            <span className="font-bold text-[#FF9900]">あかりshop ☆</span>
+                        </div>
+                        <p className="text-xs">© 2026 あかりshop. Powered by love from Japan 🇯🇵</p>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
 </body>
 </html>
