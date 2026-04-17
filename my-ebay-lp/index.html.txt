@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>あかりshop ☆ | 日本の宝物を世界へ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="nav">
+        <div class="logo">あかりshop ☆</div>
+        <a href="https://www.ebay.com" class="nav-ebay-btn">🛒 eBayで買う</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge">日本直送ショップ</span>
+            <h1>日本から、あなたのもとへ。<br><span>厳選した宝物</span>をお届けします</h1>
+            <p>レトロゲーム・限定フィギュア・和菓子まで、丁寧梱包・追跡付きで世界中にお届けします。</p>
+            <a href="https://www.ebay.com" class="main-btn">⭐ eBayストアを見る</a>
+        </div>
+        <div class="hero-image">
+            <img src="images/hero-bg.png" alt="Main Visual">
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
