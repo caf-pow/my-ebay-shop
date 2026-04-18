@@ -148,7 +148,7 @@ export default function App() {
         {/* RIGHT: Image */}
         <div style={{ flex: 1, position: "relative", minHeight: 400, display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
           <img
-            src="data:image/png;base64,HERO_IMAGE_PLACEHOLDER"
+           <img src="images/hero.png" alt="hero" ... />
             alt="hero"
             style={{ display: "none" }}
           />
