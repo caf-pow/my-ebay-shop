@@ -147,11 +147,10 @@ export default function App() {
 
         {/* RIGHT: Image */}
         <div style={{ flex: 1, position: "relative", minHeight: 400, display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
-         <img
- src="images/hero.png"
+        <img
+  src="images/hero.png"
   alt="hero"
-  className="w-full h-auto rounded-3xl shadow-lg"
-  style={{ maxWidth: "100%", height: "auto" }}
+  style={{ width: '100%', height: 'auto', borderRadius: '24px' }}
 />
           {/* Illustrated placeholder matching the uploaded image style */}
           <div style={{ position: "relative", width: "100%", height: "460px", overflow: "hidden" }}>
