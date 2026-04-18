@@ -19,14 +19,10 @@ function App() {
         padding: "20px 40px",
         borderRadius: "50px",
         fontWeight: "bold",
-        fontSize: "1.5rem",
-        boxShadow: "0 10px 20px rgba(0,0,0,0.1)"
+        fontSize: "1.5rem"
       }}>
-        起動成功！
+        React 起動成功！
       </div>
-      <p style={{ marginTop: "20px", opacity: 0.8 }}>
-        この画面が見えたら、Reactが正常に動いています。
-      </p>
     </div>
   );
 }
