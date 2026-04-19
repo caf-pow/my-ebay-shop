@@ -338,3 +338,13 @@ export default function App() {
     </div>
   );
 }
+
+import ShopPage from './ShopPage';
+
+function App() {
+  return (
+    <div className="App">
+      <ShopPage />
+    </div>
+  );
+}
